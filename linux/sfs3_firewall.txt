@@ -1,0 +1,16 @@
+
+因應 sfs3 要鎖在防火牆裡 設定iptables
+
+>iptables-save > firewall.rules
+
+編輯 firwwall.rules
+
+-A RH-Firewall-1-INPUT -p tcp -m iprange --src-range 163.17.210.129-163.17.210.253 -m tcp --dport 80 -j ACCEPT
+-A RH-Firewall-1-INPUT -p tcp -m tcp --dport 80 -j DROP
+
+
+>iptables-restore < firewall.rules
+
+>iptables -L
+
+>/etc/init.d/iptables save
