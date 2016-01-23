@@ -1,0 +1,23 @@
+
+https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Function
+
+Function 建構式 
+new Function ([arg1[, arg2[, ...argN]],] functionBody)
+最後一個參數是一個字串,裡面包含構成函式主体的陳述式
+
+<script>
+
+var addFunction = new Function('num1','num2','return num1 + num2');
+console.log(addFunction(1,2));
+
+
+//常用的function初使化方法 
+
+var addFunction = function(num1,num2){return num1+num2;}; //表達格式 
+function addFunction(num1,num2) {return num1+num2;} //陳述式格式
+
+
+
+</script>
+
+
