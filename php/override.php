@@ -28,9 +28,9 @@ class sfs3Data extends Chinese{
 
 class jsonBoard extends sfs3Data{
 
-	public function json($str){
+	public function big52utf8($str){
 
-		$str= $this->big52utf8($str);
+		$str= parent::big52utf8($str);
 		$str = $this->stringRevise($str);
 		return $str;	
 		
@@ -48,4 +48,4 @@ class jsonBoard extends sfs3Data{
 
 $data = new jsonBoard ;
 
-print $data->json("abc       defg");
+print $data->big52utf8("abc       defg");
