@@ -9,7 +9,7 @@ abstract class Chinese {
 class sfs3Data extends Chinese{
 
 	public function big52utf8($str){
-		$str = mb_convert_encoding($str,"UTF-8","BIG5");
+		$str = parent::big52utf8($str);
 		$i=1;
 		while ($i != 0){
 		//print $string;
