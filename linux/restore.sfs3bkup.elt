@@ -15,7 +15,8 @@
 @10
 
 #rsync from nfs server and protect config.php
->rsync -avz --filter='P config.php' /mnt/img/server/sfs3/bkup/sfs3/ /var/www/sfs3/
+
+>rsync -avz --filter='P include/config.php' /mnt/img/server/sfs3/bkup/sfs3/ /var/www/sfs3/
 @120
 <~#
 >chown -R www-data.www-data /var/www/sfs3/data
