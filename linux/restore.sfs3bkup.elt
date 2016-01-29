@@ -1,0 +1,22 @@
+#!/usr/bin/expect-lite
+
+>ssh 'igogo@163.17.210.250'
+<igogo@163.17.210.250's password:
+>>PASSWD
+>sudo su -
+<password for igogo:
+>>ROOTPASSWD
+>/usr/sbin/ntpdate -s time.stdtime.gov.tw
+>umount -f /mnt/img
+>mount 163.17.210.130:/data2/img /mnt/img
+>mysql -u root -p sfs3 < /mnt/img/server/sfs3/bkup/sfs3`date +%m%d`.sql
+<Enter password:
+>>DBPASSWD
+@10
+
+#rsync from nfs server and protect config.php
+>rsync -avz --filter='P config.php' /mnt/img/server/sfs3/bkup/sfs3/ /var/www/sfs3/
+@120
+<~#
+>chown -R www-data.www-data /var/www/sfs3/data
+>exit
