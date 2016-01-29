@@ -1,0 +1,26 @@
+#!/usr/bin/expect-lite
+
+#https://www.kernel.org/doc/ols/2010/ols2010-pages-197-206.pdf
+$my_cloud_os=163.17.39.135
+$my_cloud_user=USER
+$my_admin_passwd=RootPasswd
+$my_db_user=DBUSER
+$my_db_passwd=DBPasswd
+
+>ssh $my_cloud_user@$my_cloud_os
+>mount 163.17.210.132:/data /data
+#>rm -rf /home/dyesadmin/bkup/*.sql
+#>a=($my_db_user $my_db_passwd); mysqldump -u${a[0]} -p${a[1]} sfs3 > ~/bkup/sfs3`date +%m%d`.sql
+#>rm -rf /data/sfs3/*
+>a=($my_db_user $my_db_passwd); mysqldump -u${a[0]} -p${a[1]} sfs3 > /data/sfs3/sfs3-`date +%m%d`.sql
+@25
+>su -
+<Password:
+>>$my_admin_passwd
+#>rsync -avz --delete --exclude=Module_Path.txt --exclude=config.php /var/www/html/sfs3/ /data/sfs3/www
+>tar -zcvf /data/sfs3/sfs3.www.tar.gz /var/www/html/sfs3/  --exclude="/var/www/html/sfs3/include/config.php" --exclude="Module_Path.txt"
+@240
+#>chown -R dyesadmin.dyesadmin /data/sfs3/*
+>exit
+>exit
+
