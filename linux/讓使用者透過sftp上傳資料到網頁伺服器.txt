@@ -1,0 +1,82 @@
+讓使用者透過sftp上傳資料到網頁伺服器
+
+本篇作法是為了讓使用者可以使用sftp上傳公開資料到網頁伺服器,但是並不希望此使用有ssh 登入的權限
+概念:
+假設web server的根目錄在/var/www/html下
+讓此user 能chroot在  /var/www/html/chroot 裡, 並使shell為 nologin
+
+☆儘管sftp已比ftp安全許多, 但sftp仍受 sshd權限, 建議應該謹慎的設定tcp wrappers
+例如 在 /etc/hosts.allow 中明確正面表列 
+
+  sshd : 192.168.0 localhost 127.0.0.1 : Allow
+  sshd : ALL : Deny
+
+
+##########讓user sftponly  chroot 並且 no login ################
+step1
+useradd -s /usr/sbin/nologin sftponly
+
+step2
+mkdir /var/www/html/chroot
+chown -R root.root /var/www/html/chroot/
+
+usermod -d /var/www/html/chroot sftponly
+passwd sftponly
+#檢查sftponly 是否成功新增及家目錄是否在 /var/www/html/chroot
+cat /etc/passwd |grep sftponly
+
+ mkdir /var/www/html/chroot/sftponly
+ chown -R sftponly.sftponly /var/www/html/chroot/sftponly/
+ chmod -R 755 /var/www/html/chroot/sftponly
+ 
+ 
+vi /etc/ssh/sshd_config
+
+
+        Match User sftponly
+      ChrootDirectory %h
+      AllowTCPForwarding no
+      X11Forwarding no
+      ForceCommand internal-sftp
+          
+ubuntu
+systemctl restart ssh.service
+
+centos
+systemctl restart sshd.service 
+
+#as root (optional)
+ssh-keygen -t rsa 
+
+
+
+###########apache userdir ##############
+CentOS
+step1 vi /etc/httpd/conf.d/userdir.conf
+ 
+  comment out 
+  #UserDir disabled
+ 
+  UserDir /var/www/html/chroot
+ 
+
+systemctl restart httpd.service
+ 
+ 
+ 
+
+ubuntu
+
+sudo a2enmod userdir
+vi /etc/apache2/mods-enabled/userdir.conf
+
+        <IfModule mod_userdir.c>
+                UserDir /var/www/html/chroot
+                UserDir disabled root
+
+
+/etc/init.d/apache2 restart
+
+
+
+觀看 http://ip/~sftponly
