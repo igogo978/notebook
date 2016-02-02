@@ -80,3 +80,7 @@ vi /etc/apache2/mods-enabled/userdir.conf
 
 
 觀看 http://ip/~sftponly
+
+reference:
+1.https://httpd.apache.org/docs/trunk/howto/public_html.htmlhttps://httpd.apache.org/docs/trunk/howto/public_html.html
+2.http://serverfault.com/questions/268977/how-can-i-create-a-user-only-for-sftp
