@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<body>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<style>
+body, textarea {
+  font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", sans-serif;
+  }
+
+textarea.form-control {
+  height: 100%;
+}
+</style>
+
+
+</head>
+<body>
+<textarea class="form-control" rows="24" id="comment">
+
+ function obj() {
+    var self = this ;
+    self.userid = "null" ;
+    self.firstName =  "null";
+    self.familyName =  "null" ;
+  };
+
+  function addPerson(obj){
+    console.log(obj);
+    for (var i in obj) {
+      if (obj.hasOwnProperty(i)) {
+        document.write(i+':'+obj[i]+"<br>");
+      }
+    }
+  }
+
+  Mary = new obj();
+  Mary.userid = 3 ;
+  //Mary.firstName = "Jeremy" ;
+  Mary.familyName = "Lin";
+
+  addPerson(Mary);
+</textarea>
+
+Result:
+
+<script>
+  function obj() { 
+    var self = this ;
+    self.userid = "null" ;
+    self.firstName =  "null";
+    self.familyName =  "null" ;
+  };
+
+  function addPerson(obj){
+    console.log(obj);
+    for (var i in obj) {
+      if (obj.hasOwnProperty(i)) {
+        document.write(i+':'+obj[i]+"<br>");
+      }
+    }
+  }
+
+  Mary = new obj();
+  Mary.userid = 3 ;
+  //Mary.firstName = "Jeremy" ;
+  Mary.familyName = "Lin";
+
+  addPerson(Mary);
+
+</script>
+
+</body>
+</html>
+<body>
