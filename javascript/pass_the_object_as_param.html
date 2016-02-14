@@ -22,31 +22,6 @@ textarea.form-control {
 
 </head>
 <body>
-<textarea class="form-control" rows="24" id="comment">
-
- function obj() {
-    var self = this ;
-    self.userid = "null" ;
-    self.firstName =  "null";
-    self.familyName =  "null" ;
-  };
-
-  function addPerson(obj){
-    console.log(obj);
-    for (var i in obj) {
-      if (obj.hasOwnProperty(i)) {
-        document.write(i+':'+obj[i]+"<br>");
-      }
-    }
-  }
-
-  Mary = new obj();
-  Mary.userid = 3 ;
-  //Mary.firstName = "Jeremy" ;
-  Mary.familyName = "Lin";
-
-  addPerson(Mary);
-</textarea>
 
 Result:
 
@@ -75,6 +50,40 @@ Result:
   addPerson(Mary);
 
 </script>
+
+
+
+
+
+
+<textarea class="form-control" rows="24" id="comment">
+
+ function obj() {
+    var self = this ;
+    self.userid = "null" ;
+    self.firstName =  "null";
+    self.familyName =  "null" ;
+  };
+
+  function addPerson(obj){
+    console.log(obj);
+    for (var i in obj) {
+      if (obj.hasOwnProperty(i)) {
+        document.write(i+':'+obj[i]+"<br>");
+      }
+    }
+  }
+
+  Mary = new obj();
+  Mary.userid = 3 ;
+  //Mary.firstName = "Jeremy" ;
+  Mary.familyName = "Lin";
+
+  addPerson(Mary);
+</textarea>
+
+
+
 
 </body>
 </html>
