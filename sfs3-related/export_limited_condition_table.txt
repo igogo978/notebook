@@ -23,3 +23,8 @@ mysqldump  --default-character-set=latin1 --no-create-info --skip-add-drop-table
  Write REPLACE statements rather than INSERT statements. This option was added in MySQL
            5.1.3.
 
+//輸出為csv
+MariaDB [sfs3]> select * from stud_absent where year=104 and semester=1
+    -> INTO OUTFILE 'results.txt'
+    ->      FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
+    ->      LINES TERMINATED BY '\n';
