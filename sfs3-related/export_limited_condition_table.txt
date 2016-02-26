@@ -1,0 +1,25 @@
+
+
+//顯示 database 的編碼方式
+mysql -e "SHOW CREATE DATABASE sfs3" -u root -p
+
+	 
+mysqldump  --default-character-set=latin1 -uroot -p sfs3 stud_absent -w"year=104 and semester=1" >  10401.sql
+
+
+//dump data only	 
+mysqldump  --default-character-set=latin1 --no-create-info --skip-add-drop-table -uroot -p sfs3 stud_absent -w"year=104 and semester=1" >  10401.sql
+
+
+//dump data 並且 把 insert 改成 replace
+mysqldump  --default-character-set=latin1 --no-create-info --skip-add-drop-table --replace -uroot -p sfs3 stud_absent -w"year=104 and semester=1" >  10401.sql
+
+	 mysqldump -u root -p sfs3  < 10401.sql
+	 
+	 mysql -e "set names latin1 ; select * from stud_absent where year=104 and semester=1 ;" -u root -p sfs3 > result.txt
+	 
+	 
+ --replace
+ Write REPLACE statements rather than INSERT statements. This option was added in MySQL
+           5.1.3.
+
