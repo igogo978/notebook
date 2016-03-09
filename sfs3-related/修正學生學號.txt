@@ -1,0 +1,16 @@
+
+
+//教師的帳號及密碼
+select teach_id,login_pass from teacher_base;
+
+//學號為9902加奇怪符號的
+select stud_id from stud_base where stud_id like '9902%';
+
+//學號結尾是\
+select stud_id from stud_base where stud_id like '%\\';
+
+//修正
+MariaDB [sfs3]> UPDATE stud_seme SET stud_id = 9902 where stud_id like '9902%';                          Query OK, 11 rows affected (0.01 sec)
+MariaDB [sfs3]> UPDATE stud_base SET stud_id = 9902 where stud_id like '9902%';
+
+
