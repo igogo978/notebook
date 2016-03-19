@@ -7,3 +7,10 @@ class Dogs {
 	}
 
 }
+
+class Ducks {
+	function say() {
+		print "呱呱!!\n";
+	}
+
+}
