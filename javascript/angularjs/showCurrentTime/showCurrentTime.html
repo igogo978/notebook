@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example - example-location-html5-mode-production</title>
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+
+</head>
+<body ng-app="html5-mode">
+
+<script>
+'use strict';
+var app = angular.module('html5-mode', []) ;
+var url = '' ;
+app.run(['$location','$window', function ($location,$window) {
+  console.log($location.path());
+  console.log(typeof $location.path());
+
+  switch($location.path()){
+    case "/agent":
+      console.log("agent");
+      window.location.href = $location.path() ;
+      break ;
+
+    case "/xoops":
+      console.log("xoops");
+      window.location.href = $location.path() ;
+      break ;
+    default:
+      alert("neither agent nor xoops");
+  }
+
+}]);
+</script>
+
+</body>
