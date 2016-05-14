@@ -47,23 +47,23 @@ public class App {
             // create new file
             String file = dirPath + "\\playlist.txt";
             RandomAccessFile raf = new RandomAccessFile(file, "rw");
-
-            if (listOfFiles.length > 0) {
+                if (listOfFiles.length > 0) {
                 for (File listOfFile : asListOfFiles) {
                     if (listOfFile.isFile()) {
-
+                        System.out.println(listOfFile.getName());
                         raf.write(listOfFile.toString().getBytes());
                         raf.writeUTF("\n");
-                        System.out.println(listOfFile.getName());
+
                     } else if (listOfFile.isDirectory()) {
                         System.out.println("Directory " + listOfFile.getName());
                     }
                 }
-            }
-
+            } //end  if (listOfFiles.length > 0)
+            raf.close();
         } else {
             System.out.println("Please add  a directory path  to filter mp3 files.\n");
         }//end if   
 
     }
+
 } //end class App
